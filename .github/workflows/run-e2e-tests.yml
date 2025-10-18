@@ -11,9 +11,9 @@ jobs:
       db-postgres:
         image: postgres:18
         env:
-          - POSTGRES_USER: fakeUsername
-          - POSTGRES_PASSWORD: FakePassword
-          - POSTGRES_DB: api_gympass
+          POSTGRES_USER: fakeUsername
+          POSTGRES_PASSWORD: FakePassword
+          POSTGRES_DB: api_gympass
         ports:
           - '5432:5432'
         volumes:
