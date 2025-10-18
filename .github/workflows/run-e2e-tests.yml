@@ -28,7 +28,7 @@ jobs:
           cache: 'npm'
 
       - run: npm ci
-      - run: npm test:e2e
+      - run: npm run test:e2e
         env:
           JWT_SECRET: testing-jwt-super-secret:)
           DATABASE_URL: 'postgresql://fakeUsername:FakePassword@localhost:5432/api_gympass?schema=public'
