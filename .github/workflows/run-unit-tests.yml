@@ -1,4 +1,4 @@
-name: Rum Unit Tests
+name: Run Unit Tests
 
 on: [push]
 

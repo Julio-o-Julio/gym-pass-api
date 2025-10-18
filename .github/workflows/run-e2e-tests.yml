@@ -1,0 +1,34 @@
+name: Run E2E Tests
+
+on: [pull_request]
+
+jobs:
+  run-e2e-tests:
+    name: Run E2E Tests
+    runs-on: ubuntu-latest
+
+    services:
+      db-postgres:
+        image: postgres:18
+        env:
+          - POSTGRES_USER: fakeUsername
+          - POSTGRES_PASSWORD: FakePassword
+          - POSTGRES_DB: api_gympass
+        ports:
+          - '5432:5432'
+        volumes:
+          - postgres_data:/var/lib/postgresql/data
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 23
+          cache: 'npm'
+
+      - run: npm ci
+      - run: npm test:e2e
+        env:
+          JWT_SECRET: testing-jwt-super-secret:)
+          DATABASE_URL: 'postgresql://fakeUsername:FakePassword@localhost:5432/api_gympass?schema=public'
